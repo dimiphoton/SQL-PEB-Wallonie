@@ -1,26 +1,41 @@
-# Project name
+# Walloon building energy performance (PEB) — SQL analysis
 
 | | |
 |---|---|
-| **Stack** | TBD — e.g. ![Python](https://img.shields.io/badge/Python-3.11-blue?logo=python&logoColor=white) |
-| **Level** | TBD (Beginner / Intermediate / Advanced) |
-| **Data specialty** | TBD (Machine Learning / BI / Geospatial / Data engineering) |
+| **Stack** | ![Python](https://img.shields.io/badge/Python-3.11-blue?logo=python&logoColor=white) ![DuckDB](https://img.shields.io/badge/DuckDB-SQL-yellow?logo=duckdb&logoColor=white) ![SQL](https://img.shields.io/badge/SQL-analytics-lightgrey) |
+| **Level** | Intermediate |
+| **Data specialty** | BI |
 
 ## Objective
 
-TBD: what problem this project solves, and for whom.
+Turn Wallonia's open PEB (building energy performance) certificates into a
+clean star-schema database, then answer policy-relevant questions with
+advanced SQL only — no maps, no dashboard. Typical questions: which
+municipalities concentrate energy sieves? does new housing actually
+outperform the existing stock, and where is the gap widest?
 
 ## Data
 
-TBD: data source, volume, time period covered.
+Two ODWB / SPW Énergie datasets, joined through shared geographic
+dimensions (municipality, province, INS code):
+
+- [PEB — existing residential buildings](https://www.odwb.be/explore/dataset/peb-certification-residentielle-batiment-existant/)
+- [PEB — new residential buildings](https://www.odwb.be/explore/dataset/peb-batiments-residentiels-neufs/)
+
+Existing stock is labelled A–G; new buildings are assessed with Ew / Espec
+indicators. The two regimes are **not** compared one-to-one without an
+explicit, documented bridge.
 
 ## Result
 
-TBD: the concrete result, in one or two sentences.
+A reproducible DuckDB database, a documented relational schema, 8–10
+commented SQL queries, and a short synthesis translating a few results into
+recommendations for a public or private actor. *(Pipeline not built yet —
+see `ROADMAP.md`.)*
 
 ## Reproduce
 
-TBD: how to install dependencies and rerun the pipeline.
+Not applicable until the ETL step lands. Planned flow:
 
 ```bash
 pip install -e .
@@ -29,8 +44,13 @@ python -m mon_projet.cli --help
 
 ## Repo structure
 
-TBD, filled in as the project progresses — see also `ROADMAP.md` and
-`JOURNAL.md` (kept in French, like the rest of the codebase).
+Template plus the PEB brief; analysis code is still to come.
+
+- `brief/` — raw goal and original SQL brief
+- `sql/` — `schema.sql` and `queries.sql` *(upcoming)*
+- `src/` — Python ETL only *(upcoming)*
+- `docs/decisions.md` — why DuckDB, why two fact tables
+- `ROADMAP.md` / `JOURNAL.md` — progress (kept in French)
 
 ## Presentations
 

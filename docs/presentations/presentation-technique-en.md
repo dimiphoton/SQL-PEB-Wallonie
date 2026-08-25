@@ -4,44 +4,71 @@ theme: default
 paginate: true
 ---
 
-# [Project name] — technical write-up
+# Walloon PEB — technical write-up
 
-*Updated at each completed roadmap milestone.*
+*Framing — star schema, DuckDB, SQL only*
+
+![Python](https://img.shields.io/badge/Python-3.11-blue?logo=python&logoColor=white)
+![DuckDB](https://img.shields.io/badge/DuckDB-SQL-yellow?logo=duckdb&logoColor=white)
+![SQL](https://img.shields.io/badge/SQL-analytics-lightgrey)
 
 ---
 
 ## Problem framing
 
-TBD.
+ODWB PEB extracts are flat files (one certificate, one municipality, one
+indicator). A usable model needs shared geographic dimensions, two distinct
+facts (existing vs new stock), and queries that aggregate without GIS.
 
 ---
 
 ## Approach and methodology
 
-TBD.
+1. Profile both ODWB datasets (quality, columns, rating regimes).
+2. Design a star schema: municipality / province dimensions, fact tables
+   `certificats_existant` and `certificats_neuf`.
+3. Python ETL → a reproducible DuckDB file.
+4. 8–10 commented SQL queries (window functions, CTEs, comparison only
+   where it is legitimate).
+5. Short synthesis: results → recommendations.
+
+A–G labels (existing) and Ew / Espec indicators (new) will not be merged
+without a documented bridge.
 
 ---
 
 ## Tech stack
 
-<!-- badges + rationale for each choice -->
+![Python](https://img.shields.io/badge/Python-3.11-blue?logo=python&logoColor=white)
+ETL only: download, clean, load.
 
-TBD.
+![DuckDB](https://img.shields.io/badge/DuckDB-SQL-yellow?logo=duckdb&logoColor=white)
+Native analytical engine, no server, first-class window functions and
+CTEs. Avoids replaying PostgreSQL, already used elsewhere in the
+portfolio.
+
+![SQL](https://img.shields.io/badge/SQL-analytics-lightgrey)
+All business analysis stays in `sql/queries.sql`.
 
 ---
 
 ## Metrics and rationale
 
-TBD.
+No predictive model. Business metrics will be those on the certificates
+(Espec kWh/m²·year, label, volumes) plus geographic aggregates. Exact
+choices come after profiling the real columns.
 
 ---
 
 ## Results analysis and limitations
 
-TBD.
+No results yet. One limit is already set: the two certification regimes
+are not comparable one-to-one; any new-vs-existing gap must state *which
+quantity* is being compared.
 
 ---
 
 ## Code
 
-Link to the relevant modules in `src/`.
+Upcoming: `sql/schema.sql`, `sql/queries.sql`, import script under `src/`.
+Decisions: `docs/decisions.md`.
