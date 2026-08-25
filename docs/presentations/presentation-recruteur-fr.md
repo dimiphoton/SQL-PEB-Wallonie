@@ -4,28 +4,35 @@ theme: default
 paginate: true
 ---
 
-# [Nom du projet]
+# Performance énergétique des bâtiments wallons
 
-*À mettre à jour à chaque étape terminée de la roadmap.*
+*Analyse SQL — cadrage*
 
-<!-- badges de stack, ex: ![Python](https://img.shields.io/badge/Python-3.11-blue?logo=python&logoColor=white) -->
+![Python](https://img.shields.io/badge/Python-3.11-blue?logo=python&logoColor=white)
+![DuckDB](https://img.shields.io/badge/DuckDB-SQL-yellow?logo=duckdb&logoColor=white)
+![SQL](https://img.shields.io/badge/SQL-analytics-lightgrey)
 
 ---
 
 ## Le problème
 
-À compléter, en langage clair, sans jargon.
+La Wallonie connaît la performance énergétique de ses logements grâce aux
+certificats PEB, mais ces données brutes ne disent pas, à elles seules,
+où concentrer les rénovations. Un analyste doit pouvoir répondre vite :
+quelles communes ont le plus de passoires ? le neuf est-il vraiment
+meilleur, et où l'écart est-il le plus fort ?
 
 ---
 
 ## Les données
 
-À compléter, en une phrase.
+Deux jeux open data du SPW Énergie (logements existants et logements
+neufs), localisés à la commune — sans carte, uniquement par jointures SQL.
 
 ---
 
 ## Le résultat
 
-À compléter : ce que ça permet concrètement de faire ou de décider.
-
-<!-- ![Résultat](../../pictures/presentations/à-remplacer.png) -->
+Une base propre et des requêtes SQL qui transforment ces certificats en
+priorités concrètes pour un acteur public ou un bureau d'audit.
+*(Analyse en cours de construction.)*
