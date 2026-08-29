@@ -1,9 +1,13 @@
 [project]
 name = "mon-projet"
 version = "0.1.0"
-description = ""
+description = "Analyse SQL des certificats PEB wallons (DuckDB)."
 requires-python = ">=3.11"
-dependencies = []
+dependencies = [
+    "duckdb>=1.1",
+    "certifi",
+    "matplotlib>=3.8",
+]
 
 [build-system]
 requires = ["setuptools>=68"]
