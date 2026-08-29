@@ -1,5 +1,12 @@
 # Journal de développement
 
+## 2026-08-29 — Merge feature/exploration
+
+- ETL DuckDB, 11 requêtes métier, synthèse matplotlib, stretch
+  priorité + spatial. Polish : package `sql-peb-wallonie`, badges,
+  changelog. `.cursor/` retiré de `main` (présent par erreur depuis
+  le merge du cadrage).
+
 ## 2026-08-29 — Stretch optionnels
 
 - Vue `v_priorite_renovation` : score 60 % volume (m² F/G) + 40 % taux

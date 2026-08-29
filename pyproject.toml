@@ -1,5 +1,5 @@
 [project]
-name = "mon-projet"
+name = "sql-peb-wallonie"
 version = "0.1.0"
 description = "Analyse SQL des certificats PEB wallons (DuckDB)."
 requires-python = ">=3.11"
@@ -12,3 +12,7 @@ dependencies = [
 [build-system]
 requires = ["setuptools>=68"]
 build-backend = "setuptools.build_meta"
+
+# Pas de package importable : l'analyse vit dans sql/ et scripts/.
+[tool.setuptools]
+packages = []

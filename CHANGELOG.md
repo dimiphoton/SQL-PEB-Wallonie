@@ -6,9 +6,9 @@
   et extension spatiale DuckDB (limites SPW, densité, `ST_Touches`).
 - Synthèse : diagramme ER, 3 graphiques matplotlib (Q03, taux vs
   volume, Q07), notebook de recommandations public / privé.
-- 10 requêtes métier commentées (`sql/queries.sql`) : fenêtres SQL,
-  comparaison Espec neuf vs existant, classement communes / m².
-  Exécution : `python scripts/run_queries.py`.
+- 11 requêtes métier commentées (`sql/queries.sql`) : fenêtres SQL,
+  comparaison Espec neuf vs existant, classement communes / m², Q11
+  sur la vue priorité. Exécution : `python scripts/run_queries.py`.
 - Cadrage réaligné sur le brief 2026-08-29 : deux faits imposés,
   synthèse matplotlib (pas de dashboard), notebook de synthèse et
   diagramme ER au backlog, extension spatiale DuckDB en option.

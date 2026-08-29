@@ -76,7 +76,7 @@ def main() -> None:
 
     queries = iter_queries(QUERIES.read_text(encoding="utf-8"))
     if len(queries) < 8:
-        raise SystemExit(f"Attendu 8–10 requêtes, trouvé {len(queries)}.")
+        raise SystemExit(f"Attendu au moins 8 requêtes, trouvé {len(queries)}.")
 
     con = duckdb.connect(str(DB_PATH), read_only=True)
     try:

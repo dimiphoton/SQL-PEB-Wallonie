@@ -11,6 +11,7 @@ paginate: true
 ![Python](https://img.shields.io/badge/Python-3.11-blue?logo=python&logoColor=white)
 ![DuckDB](https://img.shields.io/badge/DuckDB-SQL-yellow?logo=duckdb&logoColor=white)
 ![SQL](https://img.shields.io/badge/SQL-analytics-lightgrey)
+![matplotlib](https://img.shields.io/badge/matplotlib-charts-steelblue)
 
 ---
 
@@ -83,7 +84,10 @@ ETL + charts (`scripts/etl_odwb.py`, `scripts/synthese_figures.py`).
 Analytical engine, no server.
 
 ![SQL](https://img.shields.io/badge/SQL-analytics-lightgrey)
-Business analysis in `sql/queries.sql`. matplotlib only illustrates SQL.
+Business analysis in `sql/queries.sql`.
+
+![matplotlib](https://img.shields.io/badge/matplotlib-charts-steelblue)
+Synthesis charts only, from SQL results.
 
 ---
 

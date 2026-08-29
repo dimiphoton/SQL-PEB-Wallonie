@@ -11,6 +11,7 @@ paginate: true
 ![Python](https://img.shields.io/badge/Python-3.11-blue?logo=python&logoColor=white)
 ![DuckDB](https://img.shields.io/badge/DuckDB-SQL-yellow?logo=duckdb&logoColor=white)
 ![SQL](https://img.shields.io/badge/SQL-analytics-lightgrey)
+![matplotlib](https://img.shields.io/badge/matplotlib-charts-steelblue)
 
 ---
 
@@ -84,7 +85,10 @@ ETL + figures (`scripts/etl_odwb.py`, `scripts/synthese_figures.py`).
 Moteur analytique, zéro serveur.
 
 ![SQL](https://img.shields.io/badge/SQL-analytics-lightgrey)
-Analyse métier dans `sql/queries.sql`. matplotlib n'illustre que le SQL.
+Analyse métier dans `sql/queries.sql`.
+
+![matplotlib](https://img.shields.io/badge/matplotlib-charts-steelblue)
+Figures de synthèse uniquement depuis les résultats SQL.
 
 ---
 
