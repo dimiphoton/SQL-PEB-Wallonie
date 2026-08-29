@@ -6,69 +6,96 @@ paginate: true
 
 # PEB Wallonie — présentation technique
 
-*Cadrage — schéma étoile, DuckDB, SQL uniquement*
+*Synthèse — Espec comme pont, Ew absent*
 
 ![Python](https://img.shields.io/badge/Python-3.11-blue?logo=python&logoColor=white)
 ![DuckDB](https://img.shields.io/badge/DuckDB-SQL-yellow?logo=duckdb&logoColor=white)
 ![SQL](https://img.shields.io/badge/SQL-analytics-lightgrey)
+![matplotlib](https://img.shields.io/badge/matplotlib-charts-steelblue)
 
 ---
 
 ## Cadrage du problème
 
-Les certificats PEB ODWB sont des extraits plats (un certificat, une
-commune, un indicateur). Pour un usage métier, il faut un modèle
-relationnel : dimensions géographiques partagées, deux faits distincts
-(existant vs neuf), et des requêtes qui agrègent sans SIG.
+Les extraits ODWB sont plats. Il faut un schéma étoile : dimensions
+géographiques partagées (`mun_code`), deux faits (existant vs neuf),
+des agrégats sans SIG.
 
 ---
 
-## Approche et méthodologie
+## Données profilées
 
-1. Explorer les deux jeux ODWB (qualité, colonnes, régimes de notation).
-2. Modéliser un schéma étoile : dimensions commune / province, faits
-   `certificats_existant` et `certificats_neuf`.
-3. ETL Python → fichier DuckDB reproductible.
-4. 8–10 requêtes SQL commentées (fenêtres, CTE, comparaison là où elle
-   est légitime).
-5. Synthèse courte : résultats → recommandations.
+- Existant : 874 605 certificats (IDs uniques dans le Parquet).
+- Neuf : 110 855 certificats (IDs uniques).
+- 261 communes, 5 provinces, des deux côtés.
+- Espec + label lettre **des deux côtés** ; **pas de colonne Ew**.
 
-Les lettres A–G (existant) et les indicateurs Ew / Espec (neuf) ne seront
-pas fusionnés sans pont documenté.
+---
+
+## Pont de mesure
+
+Les seuils empiriques du label (++A…G) coïncident avec l'échelle Espec
+wallonne (ex. B = 85–170 kWh/m².an). On compare l'**Espec**, pas la
+part de G (0 % dans le neuf, 21 % dans l'existant).
+
+Limite : certificat d'existant ≠ protocole construction neuve.
+
+---
+
+## Schéma étoile
+
+Deux faits, dimensions partagées. Vue `v_certificats` = UNION ALL
+avec `regime` en légende. Grain = certificat.
+
+![w:780](../../diagrams/modele_relationnel.png)
+
+---
+
+## Requêtes (11)
+
+`sql/queries.sql` : RANK, LAG, QUALIFY, CTE. Écart Espec neuf vs
+existant : **272** kWh/m².an en Hainaut, **200** en Brabant wallon.
+Taux de passoires ≠ volume en m² (Hastière vs Charleroi). Vue
+`v_priorite_renovation` = 60 % volume + 40 % taux. Spatial : limites
+SPW, densité et `ST_Touches` — pas de carte.
+
+![w:680](../../pictures/readme/ecart-espec-provinces.png)
+
+---
+
+## Recommandations
+
+**Public.** Volume → Charleroi / Liège ; taux → communes rurales ;
+priorité régionale = Hainaut. Interdire le % de G comme KPI
+neuf vs existant.
+
+**Privé.** Maisons + poêles / électrique direct. PAC existantes
+(médiane 145) déjà proches du neuf (88).
+
+Limites : certificats ≠ parc ; 47 % sans période ; protocoles distincts.
 
 ---
 
 ## Stack technique
 
 ![Python](https://img.shields.io/badge/Python-3.11-blue?logo=python&logoColor=white)
-ETL uniquement : téléchargement, nettoyage, chargement.
+ETL + figures (`scripts/etl_odwb.py`, `scripts/synthese_figures.py`).
 
 ![DuckDB](https://img.shields.io/badge/DuckDB-SQL-yellow?logo=duckdb&logoColor=white)
-Moteur analytique natif, zéro serveur, fenêtrage et CTE de premier ordre.
-Évite de rejouer PostgreSQL déjà présent ailleurs dans le portfolio.
+Moteur analytique, zéro serveur.
 
 ![SQL](https://img.shields.io/badge/SQL-analytics-lightgrey)
-Toute l'analyse métier reste dans `sql/queries.sql`.
+Analyse métier dans `sql/queries.sql`.
 
----
-
-## Métriques et justification
-
-Pas de modèle prédictif. Les indicateurs métier seront ceux des
-certificats (Espec kWh/m².an, label, volumes) plus des agrégats
-géographiques. Choix précis après exploration des colonnes réelles.
-
----
-
-## Analyse des résultats et limites
-
-Pas encore de résultats. Limite déjà posée : deux régimes de certification
-incomparables terme à terme ; tout écart neuf vs existant devra dire
-*sur quelle grandeur* on compare.
+![matplotlib](https://img.shields.io/badge/matplotlib-charts-steelblue)
+Figures de synthèse uniquement depuis les résultats SQL.
 
 ---
 
 ## Code
 
-À venir : `sql/schema.sql`, `sql/queries.sql`, script d'import dans `src/`.
-Décisions : `docs/decisions.md`.
+`sql/schema.sql`, `sql/load.sql`, `sql/queries.sql`, `sql/spatial.sql`,
+`notebooks/synthese_resultats.ipynb`, `docs/exploration.md`,
+`scripts/download_odwb.py`, `scripts/etl_odwb.py`,
+`scripts/run_queries.py`, `scripts/synthese_figures.py`,
+`scripts/load_spatial.py`, `scripts/run_spatial.py`.

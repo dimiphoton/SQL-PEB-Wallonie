@@ -6,11 +6,12 @@ paginate: true
 
 # Energy performance of Walloon buildings
 
-*SQL analysis — project framing*
+*SQL analysis — synthesis*
 
 ![Python](https://img.shields.io/badge/Python-3.11-blue?logo=python&logoColor=white)
 ![DuckDB](https://img.shields.io/badge/DuckDB-SQL-yellow?logo=duckdb&logoColor=white)
 ![SQL](https://img.shields.io/badge/SQL-analytics-lightgrey)
+![matplotlib](https://img.shields.io/badge/matplotlib-charts-steelblue)
 
 ---
 
@@ -26,13 +27,40 @@ widest?
 
 ## The data
 
-Two open datasets from the Walloon energy administration (existing homes
-and new homes), located at municipality level — no maps, SQL joins only.
+Two open datasets from the Walloon energy administration: **875,000**
+certificates for existing homes and **111,000** for new homes, located at
+municipality level — no maps, SQL joins only.
 
 ---
 
-## The result
+## What can be compared
 
-A clean database and SQL queries that turn certificates into concrete
-priorities for a public body or an energy-audit firm.
-*(Analysis still being built.)*
+Both files share the same numeric language (annual consumption per square
+metre). Almost all new homes already score well: you cannot judge old
+energy sieves with the new-build thermometer without saying so.
+
+---
+
+## What the numbers say
+
+A third of existing homes are F or G (median 339 kWh/m²·year) versus
+~88 for new builds. The gap is widest in Hainaut.
+
+Square metres to renovate sit in **large cities** (Charleroi, Liège) —
+not in the small municipalities with the worst rates.
+
+![w:720](../../pictures/readme/taux-vs-volume-passoires.png)
+
+---
+
+## Recommendations
+
+**Public actor.** Budget for volume (Charleroi, Liège). Treat Hastière
+and rural high-rate communes separately, for fairness. The
+`v_priorite_renovation` view merges both (60 % volume, 40 % rate).
+Priority: Hainaut. Do not steer with the share of G in new vs existing
+stock.
+
+**Private actor.** Target existing houses heated with stoves or direct
+electric. Heat pumps in the old stock already look like new builds:
+that is not where the certificate moves most.
