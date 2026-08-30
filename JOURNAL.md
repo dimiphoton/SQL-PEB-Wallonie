@@ -1,5 +1,10 @@
 # Journal de développement
 
+## 2026-08-30 — Clôture
+
+- Version 1.0.0 : changelog publié, `pyproject.toml` aligné.
+- Périmètre brief + stretch livrés ; aucune feature restante.
+
 ## 2026-08-29 — Merge feature/exploration
 
 - ETL DuckDB, 11 requêtes métier, synthèse matplotlib, stretch

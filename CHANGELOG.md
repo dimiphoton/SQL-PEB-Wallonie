@@ -1,6 +1,9 @@
 # Changelog
 
-## [Non publié]
+## [1.0.0] — 2026-08-30
+
+Clôture du projet. Brief livré (schéma étoile DuckDB, 11 requêtes,
+synthèse matplotlib) et stretch inclus (vue priorité, DuckDB spatial).
 
 - Stretch : vue `v_priorite_renovation` (score 60 % volume / 40 % taux)
   et extension spatiale DuckDB (limites SPW, densité, `ST_Touches`).
@@ -11,7 +14,7 @@
   sur la vue priorité. Exécution : `python scripts/run_queries.py`.
 - Cadrage réaligné sur le brief 2026-08-29 : deux faits imposés,
   synthèse matplotlib (pas de dashboard), notebook de synthèse et
-  diagramme ER au backlog, extension spatiale DuckDB en option.
+  diagramme ER, extension spatiale DuckDB en option (livrée).
 - ETL reproductible (`scripts/etl_odwb.py`, `sql/load.sql`) : schéma
   étoile chargé dans `data/processed/peb_wallonie.duckdb` (985 460
   certificats, 261 communes). Espec hors [-200, 1500] mis à NULL
