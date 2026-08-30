@@ -5,6 +5,7 @@
 | **Stack** | ![Python](https://img.shields.io/badge/Python-3.11-blue?logo=python&logoColor=white) ![DuckDB](https://img.shields.io/badge/DuckDB-SQL-yellow?logo=duckdb&logoColor=white) ![SQL](https://img.shields.io/badge/SQL-analytics-lightgrey) ![matplotlib](https://img.shields.io/badge/matplotlib-charts-steelblue) |
 | **Level** | Intermediate |
 | **Data specialty** | BI |
+| **Status** | Complete |
 
 ## Objective
 

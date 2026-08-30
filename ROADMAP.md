@@ -1,5 +1,7 @@
 # Roadmap
 
+**Statut : terminé** (2026-08-30). Aucune feature restante.
+
 Projet **BI / SQL analytics** : base DuckDB + `queries.sql` + synthèse
 courte illustrée par 2–3 graphiques matplotlib (pas de dashboard, pas
 de carte). Les deux stretch optionnels (vue priorité, DuckDB spatial)
